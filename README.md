@@ -1,3 +1,3 @@
 # HW-JS
-HW from Js lessons
+HW Js lessons
 1Task done
