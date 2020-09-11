@@ -7,7 +7,7 @@
 
 
 // 1 sposob 4erez interval
-function printNumbers(from, to) {
+function printNumbersByInterval(from, to) {
   const timer = setInterval(() => {
     console.log(from)
 
@@ -20,7 +20,7 @@ function printNumbers(from, to) {
 
 //2 sposob timeout
 
-function printNumbers(from, to) {
+function printNumbersByTimeout(from, to) {
   setTimeout(fn = () => {
       console.log(from)
       if (from < to) {
@@ -37,21 +37,22 @@ function printNumbers(from, to) {
 function clock() {
   // Code here
   // они мигают)))) 
-    const date = new Date()
+    let date = new Date() 
+
+    let  hours = date.getHours()
+    if (hours < 10) hours = `0${hours}`
   
-    const hours = date.getHours()
-    if (hours < 10) hours = '0' + hours
+    let  minutes = date.getMinutes()
+    if (minutes < 10) minutes = `0${minutes}`
   
-    const minutes = date.getMinutes()
-    if (minutes < 10) minutes = '0' + minutes
-  
-    const seconds = date.getSeconds()
-    if (seconds < 10) seconds = '0' + seconds
-  
+    let  seconds = date.getSeconds()
+    if (seconds < 10) seconds = `0${seconds}`
+
+    console.clear()
     console.log(`${hours}:${minutes}:${seconds}`)
+
+    setInterval(clock, 1000)
   }
-setInterval(clock, 1000)
-setInterval(console.clear, 999)
   
 
 
