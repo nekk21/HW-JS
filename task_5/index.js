@@ -60,7 +60,7 @@ myFetch('GET', IMAGE_API_URL)
         return response
 
     }).catch(e => {
-        throw new Error (console.log( `Error is error ${e}`))
+        console.log((`Error is error ${e}`))
     })
  
 
