@@ -20,12 +20,21 @@ function myFetch(method, url){
                     data : xhr.response,
 
                     json(){
-                       return JSON.parse(this.data)
+                        return new Promise((resolve, reject)=>{
+                            
+                            const read = new FileReader()
+
+                            read.onload = () => {
+                                resolve(JSON.parse(read.result));
+                            }
+
+                            read.readAsText(this.data)
+                        })
                     },
 
                     blob(){
 
-                        return new Blob([this.data], { type: 'image/jpeg' });
+                        return this.data
                        
                     }
                 }
@@ -50,12 +59,11 @@ myFetch('GET', IMAGE_API_URL)
     .then(response => {
 
         const read = new FileReader()
-
-        read.readAsDataURL(response.blob()) 
      
-        read.onloadend = () => {
+        read.onload = () => {
             insertImage(read.result)
         }
+        read.readAsDataURL(response.blob()) 
 
         return response
 
