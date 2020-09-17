@@ -25,7 +25,7 @@ function sendRequest(method, url){
        
     }).then(response => {
             if(response.length < 1){
-                alert("Nothing was founded!")
+                alert("Nothing was found!")
             }
             else{
                 response.forEach(film => {
