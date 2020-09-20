@@ -12,10 +12,7 @@ function sendRequest(method, url) {
     })
         .then(response => response.json())
         .then(response => {
-<<<<<<< HEAD
             
-=======
->>>>>>> a0a3e86a20723fc3c4df271922448f9d05c93db7
             if(response.length < 1) {
                 alert("Nothing was found!")
             } else {
