@@ -1,33 +1,21 @@
-const input = document.getElementById("input")
-let url = `http://api.tvmaze.com/search/shows/?q=`
+const url = `http://api.tvmaze.com/search/shows/`
 
-function getter(){
-    url = `http://api.tvmaze.com/search/shows/?q=${input.value}`
-    sendRequest('GET', url)
+function onSubmit(form) {
+    sendRequest('GET', `${url}?q=${form[0].value}`)
 }
 
-function sendRequest(method, url){
-    const headers = {}
+function sendRequest(method, url) {
     document.getElementById("wrapper").innerHTML = ''
 
     return fetch(url, {
-        method: method,
-        headers: headers,
+        method,
     })
-    .then(response =>{ 
-        if(response.ok){
-            return response.json()
-        }
-        return response.then(error =>{
-        const e = new Error(`Error is ${error}`)
-        throw e
-        })
-       
-    }).then(response => {
-            if(response.length < 1){
+        .then(response => response.json())
+        .then(response => {
+            
+            if(response.length < 1) {
                 alert("Nothing was found!")
-            }
-            else{
+            } else {
                 response.forEach(film => {
 
                     const div = document.createElement("div")
@@ -44,7 +32,7 @@ function sendRequest(method, url){
                     div.className = "inside"
 
                     img.src = film.show.image.medium  
-                    a.href = film.show.officialSite
+                    a.href = film.show.url
                     a.target = "_blank"
 
                     document.getElementById("wrapper").appendChild(div)
@@ -55,6 +43,6 @@ function sendRequest(method, url){
                 })
             }
        })
+       .catch(error => console.error(error))
             
 }
-

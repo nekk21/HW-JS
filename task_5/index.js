@@ -12,7 +12,7 @@ function myFetch(method, url){
     
         xhr.onload = () => {
             if (xhr.status >= 400) 
-                reject (new Error(`Ошибка ${xhr.status}: ${xhr.statusText}`)) 
+                reject (new Error(`Error ${xhr.status}: ${xhr.statusText}`)) 
 
             else{
                const response = {
@@ -34,7 +34,7 @@ function myFetch(method, url){
 
                     blob(){
 
-                        return this.data
+                        return Promise.resolve(this.data)
                        
                     }
                 }
@@ -55,21 +55,23 @@ function myFetch(method, url){
 // 2. Загрузить изображение, преобразовать его в Blob и используя FileReader преобразовать в формат DataUrl,
 // далее используя функцию insertImage вставить DataUrl в тег img (добавить обработку ошибок)
 
-myFetch('GET', IMAGE_API_URL)
-    .then(response => {
+    myFetch('GET', IMAGE_API_URL)
+    .then(response => response.blob())
+    .then(blob => {
+      const read = new FileReader()
 
-        const read = new FileReader()
-     
-        read.onload = () => {
-            insertImage(read.result)
-        }
-        read.readAsDataURL(response.blob()) 
+      read.onload = () => {
+        insertImage(read.result)
+      }
 
-        return response
+      read.readAsDataURL(blob)
 
+      return blob
+      
     }).catch(e => {
-        console.log((`Error is error ${e}`))
+      console.log((`Error is error ${e}`))
     })
+
  
 
 
