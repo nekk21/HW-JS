@@ -8,12 +8,12 @@
 </head>
 
 <body background="https://cutewallpaper.org/21/black-1920x1080-wallpaper/Dark-Desktop-Backgrounds-1920x1080-,-Best-Background-Images-.jpg">
-    <div class="input" id="mydiv">
-        <input type="text" id="input" value="" placeholder="Поиск фильмов и сериалов" onchange="getter()">
-        <input id="button" type="submit" value="Enter">
-    </div>
+    <form class="form" method="GET" action="#" onsubmit="onSubmit(this); return false">
+        <input type="text" class="input" value="" placeholder="Поиск фильмов и сериалов">
+        <input type="submit" class="button"  value="Enter">
+    </form>
 
-    <div id="wrapper"></div>
+    <div id="wrapper" class="wrapper"></div>
 
 </body>
 
