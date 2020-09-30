@@ -1,18 +1,33 @@
-import React from 'react'
-import { Table, Container } from 'react-bootstrap'
+import React, { useEffect } from 'react'
+import {Container } from 'react-bootstrap'
+import Tab from './Components/Tab'
+import {connect} from 'react-redux'
+import getUsers from './request'
 
-export const Users = () => (
-  <Container>
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Username</th>
-          <th>URL</th>
-        </tr>
-      </thead>
+const mapStateToProps = function(state){
+  return state;
+}
 
-      <tbody></tbody>
-    </Table>
-  </Container>
-)
+const mapDispatchToProps = function(dispatch){
+  return{
+    recived: function(users){ return dispatch({type: "RECIVED" , users})}
+  }
+}
+
+
+const Users = (props) => {
+  useEffect(() => {
+    getUsers().then(data => {
+      props.recived(data)
+    })
+  }, [])
+
+  return (
+    <Container>
+      <Tab users={props.users} />
+    </Container>
+  )
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users);
