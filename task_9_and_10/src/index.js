@@ -4,21 +4,19 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { createStore } from 'redux'
-import {Provider} from 'react-redux'
-
-
+import { Provider } from 'react-redux'
 
 const USERS_STATE = {
-  users : [],
+  users: [],
 }
 
-function reduser (state = USERS_STATE, action){
-  switch(action.type) {
-    case "RECIVED":
-      return Object.assign({}, state, { users: action.users });
+function reduser(state = USERS_STATE, action) {
+  switch (action.type) {
+    case 'RECIVED':
+      return Object.assign({}, state, { users: action.users })
 
     default:
-      return state;
+      return state
   }
 }
 
