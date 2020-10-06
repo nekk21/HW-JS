@@ -4,11 +4,11 @@ import Tab from './Components/Tab'
 import { connect } from 'react-redux'
 import getUsers from './request'
 
-const mapStateToProps = function (state) {
+const mapStateToProps = state => {
   return state
 }
 
-const mapDispatchToProps = function (dispatch) {
+const mapDispatchToProps = dispatch => {
   return {
     recived: function (users) {
       return dispatch({ type: 'RECIVED', users })

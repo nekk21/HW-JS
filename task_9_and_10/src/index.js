@@ -13,7 +13,10 @@ const USERS_STATE = {
 function reduser(state = USERS_STATE, action) {
   switch (action.type) {
     case 'RECIVED':
-      return Object.assign({}, state, { users: action.users })
+      return {
+        ...state,
+        users: action.users,
+      } //Object.assign({}, state, { users: action.users })
 
     default:
       return state

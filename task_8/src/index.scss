@@ -59,18 +59,15 @@ p {
 
 img {
   border: 4px solid transparent;
-}
 
-img:hover {
-  border-radius: 5px;
-  border-color: #81b5fa;
-  transition: 1s;
-  transform: translate(5px, -5px);
+  &:hover {
+    border-radius: 5px;
+    border-color: #81b5fa;
+    transition: 1s;
+    transform: translate(5px, -5px);
+  }
 }
 
 .inside {
   padding: 5px;
 }
-
-
-/*# sourceMappingURL=/src.77de5100.css.map */

@@ -1,5 +1,3 @@
-//import './index.css'
-
 const url = `http://api.tvmaze.com/search/shows/`
 
 window.onSubmit = onSubmit
