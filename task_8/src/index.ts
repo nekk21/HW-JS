@@ -1,10 +1,11 @@
 const url = `http://api.tvmaze.com/search/shows/`
 
-window.onSubmit = onSubmit
+const form = document.getElementById('form')
 
-function onSubmit(form) {
+form.addEventListener('submit', event => {
+  event.preventDefault()
   sendRequest('GET', `${url}?q=${form[0].value}`)
-}
+})
 
 function sendRequest(method, url) {
   document.getElementById('wrapper').innerHTML = ''
