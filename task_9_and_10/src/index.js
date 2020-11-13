@@ -1,29 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
-import { createStore } from 'redux'
+import { applyMiddleware, compose, createStore } from 'redux'
 import { Provider } from 'react-redux'
+import { rootReducer } from './redux/rootReducer'
+import createSagaMiddleware from 'redux-saga'
+import { sagaWatcher } from './redux/saga'
 
-const USERS_STATE = {
-  users: [],
-}
+const saga = createSagaMiddleware()
+const store = createStore(rootReducer, compose(applyMiddleware(saga)))
 
-function reduser(state = USERS_STATE, action) {
-  switch (action.type) {
-    case 'RECIVED':
-      return {
-        ...state,
-        users: action.users,
-      } //Object.assign({}, state, { users: action.users })
-
-    default:
-      return state
-  }
-}
-
-const store = createStore(reduser)
+saga.run(sagaWatcher)
 
 ReactDOM.render(
   <Provider store={store}>

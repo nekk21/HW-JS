@@ -1,12 +1,11 @@
 import React from 'react'
-import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Navibar from './Components/Navibar'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import { Main } from './Main'
-import Users from './Users'
+import { Main } from './Components/Main'
+import { Users } from './Components/Users'
 
 function App() {
   return (

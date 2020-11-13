@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
-import getUsers from './request'
-import Tab from './Components/Tab'
+import getUsers from '../request'
+import Tab from './Tab'
 
 export const Main = () => {
   const [users, setUsers] = useState([])
@@ -10,7 +10,7 @@ export const Main = () => {
     getUsers().then(data => {
       setUsers(data)
     })
-  }, [])
+  }, [users])
 
   return (
     <Container>
